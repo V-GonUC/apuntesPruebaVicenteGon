@@ -1,6 +1,7 @@
 
 chefsRegistrar = 0
-
+chefMaestro = 0
+chefAprendiz = 0
 
 while chefsRegistrar <= 0:
     try:
@@ -12,6 +13,7 @@ while chefsRegistrar <= 0:
 
 for cantidadChefs in range(chefsRegistrar):
     validadorChefs = False
+    validadorExperiencia = False
     
     while validadorChefs == False:
         codigoChef = input (f"Ingrese el código del chef {cantidadChefs+1}: ")
@@ -20,9 +22,21 @@ for cantidadChefs in range(chefsRegistrar):
         else:
             validadorChefs = True
 
-    try:
-        experienciaChef = int(input (f"Ingrese la experiencia del chef {cantidadChefs+1} (en años): "))
-        if experienciaChef < 0:
-            print ("¡Error gastronómico! Ingresa un número entero positivo para la experiencia culinaria.")  
-    except:
-        print("¡Error gastronómico! Ingresa un número entero positivo para la experiencia culinaria.")
+    while validadorExperiencia == False:
+        try:
+            experienciaChef = int(input (f"Ingrese la experiencia del chef {cantidadChefs+1} (en años): "))
+            if experienciaChef <= 0:
+                print ("¡Error gastronómico! Ingresa un número entero positivo para la experiencia culinaria.")
+            else:
+                validadorExperiencia = True  
+        except:
+            print("¡Error gastronómico! Ingresa un número entero positivo para la experiencia culinaria.")
+
+    if experienciaChef > 5:
+        chefMaestro += 1
+    else:
+        chefAprendiz += 1
+
+print (f"¡La escuela cuenta con {chefMaestro} Chefs Maestros y {chefAprendiz} Chefs Aprendices! ¡A cocinar!")
+
+
